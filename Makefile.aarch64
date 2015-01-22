@@ -2,8 +2,8 @@ CC   = mpicc
 LD   = mpicc
 CPPFLAGS = -I.
 CFLAGS = -O3 -march=armv8-a+fp+simd -fopenmp
-LDFLAGS = -lm
-LDLIBS = 
+LDFLAGS =
+LDLIBS = -lm
 
 EXEC = miniAMR.x
 
