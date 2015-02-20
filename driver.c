@@ -33,6 +33,8 @@
 #include "timer.h"
 #include "proto.h"
 
+#include "marker_stub.h"
+
 // Main driver for program.
 void driver(void)
 {
@@ -57,6 +59,14 @@ void driver(void)
    timer_plot += t3 - t2;
 
    nb_min = nb_max = global_active;
+
+   if(my_pe == 0)
+       MARKER_INIT;
+
+   MARKER_START(my_pe);
+#ifdef GEM5_MARKERS
+   MPI_Barrier(MPI_COMM_WORLD);
+#endif
 
    for (comm_stage = 0, ts = 1; ts <= num_tsteps; ts++) {
       for (stage = 0; stage < stages_per_ts; stage++, comm_stage++) {
@@ -111,4 +121,6 @@ void driver(void)
       timer_plot += timer() - t3;
    }
    timer_all = timer() - t1;
+
+   MARKER_STOP(my_pe);
 }

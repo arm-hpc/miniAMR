@@ -1,7 +1,7 @@
 CC   = mpicc
 LD   = mpicc
 CPPFLAGS = -I.
-CFLAGS = -O3 -march=armv8-a+fp+simd -fopenmp
+CFLAGS = -O3 -march=armv8-a+fp+simd -fopenmp -DARM_MARKERS -DGEM5_MARKERS
 LDFLAGS =
 LDLIBS = -lm
 
